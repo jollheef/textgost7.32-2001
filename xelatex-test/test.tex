@@ -23,7 +23,7 @@
 \usepackage{longtable}
 \usepackage{wrapfig}
 \usepackage{lscape}
-\usepackage{amsmath}
+\usepackage{mathtools}
 \usepackage{tabularx}
 \usepackage{titlesec}
 \usepackage[left=2.5cm, right=1.5cm, top=2.5cm, bottom=2.5cm]{geometry}
@@ -138,9 +138,11 @@ justification=raggedright}
 \addcontentsline{toc}{section}{Приложение~\Ralph{app}}\label{#2}%
 \vfill\vfill\newpage}
 
-
-
 \addto\captionsrussian{\renewcommand{\refname}{{\hfill СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ\hfill}}}
+
+\numberwithin{equation}{section}
+%%Ссылка на формулу по госту
+\newcommand{\mathref}[1]{(\ref{#1})}
 
 \begin{document}
 \input{title/title}
