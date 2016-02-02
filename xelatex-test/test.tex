@@ -1,0 +1,174 @@
+\documentclass[12pt, final, a4paper, oneside]{extarticle}
+%\usepackage[14pt]{extsizes} 
+\usepackage{polyglossia}  %% подключает пакет многоязыкой вёрстки
+\newfontfamily{\cyrillicfont}{Liberation Serif}
+\setmainfont{Liberation Serif}  %% задаёт основной шрифт документа
+\setsansfont{DejaVu Sans}  %% задаёт шрифт без засечек
+\setmonofont{DejaVu Sans Mono}  %% задаёт моноширинный шрифт
+\defaultfontfeatures{Scale=MatchLowercase, Mapping=tex-text}  %% устанавливает поведение шрифтов по умолчанию
+\setdefaultlanguage{russian}  %% устанавливает язык по умолчанию
+\setotherlanguage{english}
+
+\tolerance=1000
+\usepackage{hyphenat}
+\usepackage{indentfirst}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{lastpage}
+\usepackage{tocloft}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}    %TODO: Проверить пакеты на используемость
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{lscape}
+\usepackage{amsmath}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage[left=2.5cm, right=1.5cm, top=2.5cm, bottom=2.5cm]{geometry}
+
+%\pretolerance10000 % запрет переносов
+\clubpenalty=10000  % откл. висячих
+\widowpenalty=10000 %               строк
+\setlength\parindent{1.5cm}
+\pagestyle{empty}
+\usepackage{setspace}
+\setstretch{1.5} %полуторный интервал
+%\parindent=1.5cm % отступ красной строки
+\righthyphenmin=2 %кол-во букв, которые можно переносить
+%\fussy
+
+% 115%
+\renewcommand{\tiny}{\fontsize{7}{8.05pt}\selectfont}
+\renewcommand{\scriptsize}{\fontsize{9}{10.35pt}\selectfont}
+\renewcommand{\footnotesize}{\fontsize{11}{12.65pt}\selectfont}
+\renewcommand{\small}{\fontsize{12}{13.8pt}\selectfont}
+\renewcommand{\normalsize}{\fontsize{14}{16.1pt}\selectfont}
+\renewcommand{\large}{\fontsize{16}{18.4pt}\selectfont}
+\renewcommand{\Large}{\fontsize{18}{20.7pt}\selectfont}
+\renewcommand{\LARGE}{\fontsize{20}{23pt}\selectfont}
+
+%Подпись для рисунков
+\DeclareCaptionLabelSeparator{dash}{ {\textemdash} }
+\captionsetup{
+  format=plain,
+  justification=centering,
+  labelsep=dash,
+  figurename=Рисунок}
+
+%Подпись для таблиц
+\captionsetup[table]{
+  justification=raggedright,
+  singlelinecheck=off}
+
+\DeclareCaptionLabelFormat{continued}{#1~#2 {Продолжение таблицы} )}
+\captionsetup[ContinuedFloat]{labelformat=continued,
+justification=raggedright}
+
+%Добавление изображения. Параметры:
+%1 -- путь к картинке; 2 -- подпись; 3 -- label.
+\newcommand{\gostfig}[3]{ 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{#1}
+  \caption{#2}
+  \label{#3}
+\end{figure} }
+
+\newcounter{No}
+\renewcommand{\theenumi}{\arabic{enumi}}
+\renewcommand{\theenumii}{\arabic{enumii}}
+
+\renewcommand{\alph}[1]{\asbuk{#1}}
+\setlist{nolistsep}
+\setitemize[1]{label=\textendash, fullwidth, itemindent=\parindent, 
+  listparindent=\parindent}% для дефисного списка
+\setenumerate[1]{label=\arabic*, fullwidth, itemindent=\parindent, 
+  listparindent=\parindent}% для нумерованного списка
+\setenumerate[2]{label=\theenumi.\theenumii, fullwidth, itemindent=\parindent,
+  listparindent=\parindent}
+\renewcommand{\cfttoctitlefont}{\hfil \normalsize}
+\renewcommand{\cftsecfont}{\normalfont}
+\renewcommand{\cftsecpagefont}{\normalfont}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+\titleformat{\section}[block]
+            {\hspace{1.5cm}\normalfont\large}
+            {\thesection}
+            {1ex}{}
+\titlespacing{\section}{0pt}{0pt}{0pt}
+
+\titleformat{\subsection}[block]
+            {\hspace{1.5cm}\normalfont}
+            {\thesubsection}
+            {1ex}{}
+\titlespacing{\subsection}{0pt}{0pt}{0pt}
+
+%Для специальных заголовков
+\titleformat{\subparagraph}[block]
+            {\filcenter\normalfont\large}
+            {}
+            {}{}
+\titlespacing{\subparagraph}{0pt}{0pt}{0pt}
+
+% Заголовки для введения, заключения, списка литературы и прочего, что должно входить
+% в содержание и не имеет нумерации
+\newcommand{\specsection}[1]{\subparagraph{\MakeUppercase{#1}}\addcontentsline{toc}{section}{#1}}
+
+% Заголовки для реферата, терминов и определений и прочего, что не входит в содержание и не имеет нумерации
+\newcommand{\anonsection}[1]{\subparagraph{\MakeUppercase{#1}}} 
+
+\newcounter{app}
+
+\makeatletter % @ -> letter 
+\newcommand*{\Ralph}[1]{\@Ralph{\@nameuse{c@#1}}}
+\newcommand*{\@Ralph}[1]%
+{\ifcase #1\or А\or Б\or В\or Г\or Д\or Е\or Ж\or И\or К \or Л\or М\or Н%
+\or П\or Р\or С\or Т\or У\or Ф\or Х\or Ц \or Ш\or Щ\or Э\or Ю\or Я%
+\else\@ctrerr \fi}
+\makeatother % letter -> @  
+
+\renewcommand{\theapp}{\Ralph{app}}
+
+%титульник приложений #1 -- Название приложения, #2 -- label%
+\newcommand{\appsection}[2]{\par\refstepcounter{app}%
+\null\vfill%
+\subparagraph{Приложение~\Ralph{app}\\(обязательное)\\{#1}}%
+\addcontentsline{toc}{section}{Приложение~\Ralph{app}}\label{#2}%
+\vfill\vfill\newpage}
+
+
+
+\addto\captionsrussian{\renewcommand{\refname}{{\hfill СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ\hfill}}}
+
+\begin{document}
+\input{title/title}
+\include{synopsis/synopsis}
+\newpage
+\tableofcontents
+\include{preface/preface}
+\newpage
+\section{Заголовок1}
+\subsection{Подзаголовок1}
+В приложении \ref{prove} указано... А вот в приложении \ref{prove2}... Текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст.
+
+\section{Заголовок2}
+В приложении \ref{prove2} указано... А вот в приложении \ref{prove}... Текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст.
+
+% \include{sec1/sec1}
+% \include{sec2/sec2}
+% \include{sec3/sec3}
+% \include{sec4/sec4}
+% \include{sec5/sec5}
+\include{concl/concl}
+\include{litr/litr}
+%\include{appendix/appendix}
+\newpage
+\appsection{Название приложения}{prove}
+Само приложение 1.
+\newpage
+\appsection{Название приложения2}{prove2}
+Само приложение 2.
+
+\end{document}
