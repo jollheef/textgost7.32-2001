@@ -1,7 +1,7 @@
 \documentclass[12pt, final, a4paper, oneside]{extarticle}
-%\usepackage[14pt]{extsizes} 
 \usepackage{polyglossia}  %% подключает пакет многоязыкой вёрстки
 \newfontfamily{\cyrillicfont}{Liberation Serif}
+%\setmainfont{Times New Roman}  %% задаёт основной шрифт документа
 \setmainfont{Liberation Serif}  %% задаёт основной шрифт документа
 \setsansfont{DejaVu Sans}  %% задаёт шрифт без засечек
 \setmonofont{DejaVu Sans Mono}  %% задаёт моноширинный шрифт
@@ -76,69 +76,122 @@ justification=raggedright}
   \label{#3}
 \end{figure} }
 
-\newcounter{No}
-\renewcommand{\theenumi}{\arabic{enumi}}
+\newcounter{No} % Лишний?
+
+\makeatletter % @ -> letter 
+\newcommand*{\Ralph}[1]{\@Ralph{\@nameuse{c@#1}}}
+\newcommand*{\@Ralph}[1]%
+{\ifcase #1\or А\or Б\or В\or Г\or Д\or Е\or Ж\or И\or К\or Л\or М\or Н%
+\or П\or Р\or С\or Т\or У\or Ф\or Х\or Ц\or Ш\or Щ\or Э\or Ю\or Я%
+\else\@ctrerr \fi}
+
+\renewcommand*{\alph}[1]{\@ralph{\@nameuse{c@#1}}} % если создать новую команду, почему-то не работает
+\newcommand*{\@ralph}[1]%
+{\ifcase #1\or а\or б\or в\or г\or д\or е\or ж\or и\or к\or л\or м\or н%
+\or п\or р\or с\or т\or у\or ф\or х\or ц\or ш\or щ\or э\or ю\or я%
+\else\@ctrerr \fi}
+
+\renewcommand{\theparagraph}{%
+\ifnum \c@subsection >0
+\thesubsection.\@arabic\c@paragraph%
+\else
+\thesection.\@arabic\c@paragraph%
+\fi}
+\@addtoreset{paragraph}{subsection} % подчинение счетчика
+\makeatother % letter -> @  
+
+\renewcommand{\theenumi}{\alph{enumi}}
 \renewcommand{\theenumii}{\arabic{enumii}}
 
-\renewcommand{\alph}[1]{\asbuk{#1}}
+%перечисления
 \setlist{nolistsep}
-\setitemize[1]{label=\textendash, fullwidth, itemindent=\parindent, 
+\setitemize[1]{label=-, fullwidth, itemindent=\parindent, 
   listparindent=\parindent}% для дефисного списка
-\setenumerate[1]{label=\arabic*, fullwidth, itemindent=\parindent, 
-  listparindent=\parindent}% для нумерованного списка
-\setenumerate[2]{label=\theenumi.\theenumii, fullwidth, itemindent=\parindent,
+\setitemize[2]{label=-, fullwidth, itemindent=\parindent, leftmargin=1.5cm,
   listparindent=\parindent}
+
+\setenumerate[1]{label=\theenumi), fullwidth, itemindent=\parindent, 
+  listparindent=\parindent}% для нумерованного списка
+\setenumerate[2]{label=\theenumii), fullwidth, itemindent=\parindent, leftmargin=1.5cm,
+  listparindent=\parindent}%, labelwidth=-1.5cm}
+
 \renewcommand{\cfttoctitlefont}{\hfil \normalsize}
 \renewcommand{\cftsecfont}{\normalfont}
 \renewcommand{\cftsecpagefont}{\normalfont}
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 
-\titleformat{\section}[block]
-            {\hspace{1.5cm}\normalfont\large}
-            {\thesection}
-            {1ex}{}
-\titlespacing{\section}{0pt}{0pt}{0pt}
+\renewcommand*{\section}[1]{%
+\refstepcounter{section}%
+{\par\normalfont\large\thesection\hspace{1ex}#1\par\nopagebreak%
+\addcontentsline{toc}{section}{\thesection\hspace{1ex}#1}%
+\setcounter{paragraph}{0}%
+}}
 
-\titleformat{\subsection}[block]
-            {\hspace{1.5cm}\normalfont}
-            {\thesubsection}
-            {1ex}{}
-\titlespacing{\subsection}{0pt}{0pt}{0pt}
+\renewcommand*{\subsection}[1]{%
+\refstepcounter{subsection}%
+{\par\normalfont\large\thesubsection\hspace{1ex}#1\par\nopagebreak%
+\addcontentsline{toc}{subsection}{\thesubsection\hspace{1ex}#1}%
+}}
+
+\renewcommand{\paragraph}[1]{%
+\refstepcounter{paragraph}%
+{\par\normalfont\normalsize% заголовок
+  \def\temp{}%    для проверки есть ли
+  \def\tempa{#1}%                      параметр 
+  \ifx\temp\tempa
+  \theparagraph\hspace{1ex}%
+  \else
+  \theparagraph\hspace{1ex}#1\par\nopagebreak%
+  \addcontentsline{toc}{paragraph}{\theparagraph\hspace{1ex}#1}%
+  \fi%
+}}
+
+
+\renewcommand{\subparagraph}{%
+\refstepcounter{subparagraph}%
+{\par\thesubparagraph\hspace{1ex}}}
+
 
 %Для специальных заголовков
-\titleformat{\subparagraph}[block]
-            {\filcenter\normalfont\large}
-            {}
-            {}{}
-\titlespacing{\subparagraph}{0pt}{0pt}{0pt}
+\newcommand*{\specsec}[1]{%
+{\par\normalfont\large\filcenter#1% заголовок
+\par% закончить заголовок
+}}
 
 % Заголовки для введения, заключения, списка литературы и прочего, что должно входить
 % в содержание и не имеет нумерации
-\newcommand{\specsection}[1]{\subparagraph{\MakeUppercase{#1}}\addcontentsline{toc}{section}{#1}}
+\newcommand*{\specsection}[1]{\clearpage%
+\specsec{\MakeUppercase{#1}}%
+\addcontentsline{toc}{section}{#1}%
+}
 
 % Заголовки для реферата, терминов и определений и прочего, что не входит в содержание и не имеет нумерации
-\newcommand{\anonsection}[1]{\subparagraph{\MakeUppercase{#1}}} 
+\newcommand*{\anonsection}[1]{\clearpage\specsec{\MakeUppercase{#1}}} 
 
 \newcounter{app}
-
-\makeatletter % @ -> letter 
-\newcommand*{\Ralph}[1]{\@Ralph{\@nameuse{c@#1}}}
-\newcommand*{\@Ralph}[1]%
-{\ifcase #1\or А\or Б\or В\or Г\or Д\or Е\or Ж\or И\or К \or Л\or М\or Н%
-\or П\or Р\or С\or Т\or У\or Ф\or Х\or Ц \or Ш\or Щ\or Э\or Ю\or Я%
-\else\@ctrerr \fi}
-\makeatother % letter -> @  
-
 \renewcommand{\theapp}{\Ralph{app}}
 
 %титульник приложений #1 -- Название приложения, #2 -- label%
-\newcommand{\appsection}[2]{\par\refstepcounter{app}%
-\null\vfill%
-\subparagraph{Приложение~\Ralph{app}\\(обязательное)\\{#1}}%
-\addcontentsline{toc}{section}{Приложение~\Ralph{app}}\label{#2}%
+\newcommand*{\appsection}[2]{\refstepcounter{app}%
+\clearpage\null\vfill%
+\specsec{Приложение~\theapp\\(обязательное)\\{#1}}%
+\addcontentsline{toc}{section}{Приложение~\theapp}\label{#2}%
 \vfill\vfill\newpage}
 
-\addto\captionsrussian{\renewcommand{\refname}{{\hfill СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ\hfill}}}
+
+
+\addto\captionsrussian{%
+\renewcommand{\refname}{{\hfill СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ\hfill}}%
+\renewcommand{\contentsname}{\large{СОДЕРЖАНИЕ}}%
+%\renewcommand{\tableofcontents}{\specsection{\contentsname}\@starttoc{toc}}%
+}
+
+\makeatletter % @ -> letter 
+% Содержание
+\renewcommand{\l@section}{\@dottedtocline{1}{0cm}{0em}}
+\renewcommand{\l@subsection}{\@dottedtocline{2}{0cm}{0em}}
+\renewcommand{\l@paragraph}{\@dottedtocline{3}{0cm}{0em}}
+\makeatother % letter -> @  
 
 \numberwithin{equation}{section}
 %%Ссылка на формулу по госту
@@ -151,12 +204,41 @@ justification=raggedright}
 \tableofcontents
 \include{preface/preface}
 \newpage
-\section{Заголовок1}
-\subsection{Подзаголовок1}
-В приложении \ref{prove} указано... А вот в приложении \ref{prove2}... Текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст.
+\section{Раздел1}
+\subsection{Подраздел1}
+\paragraph{Пункт с заголовком1}
+В приложении \ref{prove2} текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст
+\paragraph{Пункт с заголовком2}
+\subparagraph Подпункт текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст
+\subparagraph Подпункт  текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст
+\begin{enumerate}
+\item one;
+\item two;
+\item three;
+  \begin{enumerate}
+  \item one;
+  \item two;
+  \item three;
+  \end{enumerate}
+\end{enumerate}
 
-\section{Заголовок2}
-В приложении \ref{prove2} указано... А вот в приложении \ref{prove}... Текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст текст.
+\subsection{Подраздел2}
+\paragraph{Пункт с заголовком1}
+Текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст
+
+\section{Раздел2}
+\paragraph{Пункт с заголовком 1} Текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст
+\paragraph{}Пункт без заголовка текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст 
+\begin{itemize}
+\item one;
+\item two;
+\item three;
+  \begin{itemize}
+  \item one;
+  \item two;
+  \item three;
+  \end{itemize}
+\end{itemize}
 
 % \include{sec1/sec1}
 % \include{sec2/sec2}
@@ -171,6 +253,6 @@ justification=raggedright}
 Само приложение 1.
 \newpage
 \appsection{Название приложения2}{prove2}
-Само приложение 2.
+Само приложение 2. skdfh sjdlf hsldf jsdhf sljfh sdfjl sdljf sdlfjshdf ls dhfjsdhf jshf lsjd sjdhf lsdhjf sljdf shjf lsjhdf sljdf sjdf shdfls dfhsdjf 
 
 \end{document}

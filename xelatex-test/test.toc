@@ -1,15 +1,14 @@
 \select@language {russian}
-\contentsline {subparagraph}{\MakeUppercase {Реферат}}{1}
-\contentsline {subparagraph}{\MakeUppercase {Введение}}{3}
 \contentsline {section}{Введение}{3}
-\contentsline {section}{\numberline {1}Заголовок1}{4}
-\contentsline {subsection}{\numberline {1.1}Подзаголовок1}{4}
-\contentsline {section}{\numberline {2}Заголовок2}{4}
-\contentsline {subparagraph}{\MakeUppercase {Заключение}}{5}
-\contentsline {section}{Заключение}{5}
-\contentsline {subparagraph}{\MakeUppercase {Список использованных источников}}{6}
-\contentsline {section}{Список использованных источников}{6}
-\contentsline {subparagraph}{Приложение~А\\(обязательное)\\{Название приложения}}{7}
-\contentsline {section}{Приложение~А}{7}
-\contentsline {subparagraph}{Приложение~Б\\(обязательное)\\{Название приложения2}}{9}
-\contentsline {section}{Приложение~Б}{9}
+\contentsline {section}{1\hspace {1ex}Раздел1}{4}
+\contentsline {subsection}{1.1\hspace {1ex}Подраздел1}{4}
+\contentsline {paragraph}{1.1.1\hspace {1ex}Пункт с заголовком1}{4}
+\contentsline {paragraph}{1.1.2\hspace {1ex}Пункт с заголовком2}{4}
+\contentsline {subsection}{1.2\hspace {1ex}Подраздел2}{4}
+\contentsline {paragraph}{1.2.1\hspace {1ex}Пункт с заголовком1}{4}
+\contentsline {section}{2\hspace {1ex}Раздел2}{4}
+\contentsline {paragraph}{2.1\hspace {1ex}Пункт с заголовком 1}{4}
+\contentsline {section}{Заключение}{6}
+\contentsline {section}{Список использованных источников}{7}
+\contentsline {section}{Приложение~А}{8}
+\contentsline {section}{Приложение~Б}{10}
