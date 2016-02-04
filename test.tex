@@ -24,7 +24,6 @@
 \usepackage{wrapfig}
 \usepackage{lscape}
 \usepackage{mathtools}
-\usepackage{environ}
 \usepackage{tabularx}
 \usepackage{titlesec}
 \usepackage[left=2.5cm, right=1.5cm, top=2.5cm, bottom=2.5cm]{geometry}
@@ -99,7 +98,6 @@
 
 \renewcommand{\theequation}{
   \ifnum \c@app > 0
-  \@addtoreset{equation}{app}%
   \theapp.\@arabic\c@equation
   \else
   \@arabic\c@equation
@@ -181,7 +179,7 @@
 
 %титульник приложений #1 -- Название приложения, #2 -- label%
 \newcommand*{\appsection}[2]{\refstepcounter{app}%
-\setcounter{eqcntr}{0}
+\setcounter{equation}{0}
 \clearpage\null\vfill%
 \specsec{Приложение~\theapp\\(обязательное)\\{#1}}%
 \addcontentsline{toc}{section}{Приложение~\theapp}\label{#2}%
@@ -202,8 +200,6 @@
 \renewcommand{\l@paragraph}{\@dottedtocline{3}{0cm}{0em}}
 \makeatother % letter -> @  
 
-%%Ссылка на формулу по госту
-\newcommand{\mathref}[1]{(\ref{#1})}
 
 \begin{document}
 \input{title/title}
@@ -213,6 +209,9 @@
 \include{preface/preface}
 \newpage
 \section{Раздел1}
+\eqref{eq:1}, \mathref{eq:2}
+
+\mathref{eq:3}, \mathref{eq:4}
 \subsection{Подраздел1}
 \paragraph{Пункт с заголовком1}
 В приложении \ref{prove2} текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст
@@ -291,10 +290,12 @@
 Само приложение 1.
 \newpage
 \begin{equation}
+  \label{eq:3}
   y = sin(x)
 \end{equation}
 
 \begin{equation}
+  \label{eq:4}
   y = sin(x)
 \end{equation}
 \appsection{Название приложения2}{prove2}
@@ -345,6 +346,7 @@ highly variable Grid, MLMMH} \label{grid_mlmmh}\\
 \end{longtable}
 
 \begin{equation}
+  \label{eq:1}
   x = \sin(x)
 \end{equation}
 
@@ -353,6 +355,7 @@ highly variable Grid, MLMMH} \label{grid_mlmmh}\\
 \end{equation}
 
 \begin{equation}
+  \label{eq:2}
   x = \sin(x)
 \end{equation}
 

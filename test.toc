@@ -5,10 +5,10 @@
 \contentsline {paragraph}{1.1.1\hspace {1ex}Пункт с заголовком1}{4}
 \contentsline {paragraph}{1.1.2\hspace {1ex}Пункт с заголовком2}{4}
 \contentsline {subsection}{1.2\hspace {1ex}Подраздел2}{4}
-\contentsline {paragraph}{1.2.1\hspace {1ex}Пункт с заголовком1}{4}
+\contentsline {paragraph}{1.2.1\hspace {1ex}Пункт с заголовком1}{5}
 \contentsline {section}{2\hspace {1ex}Раздел2}{5}
 \contentsline {paragraph}{2.1\hspace {1ex}Пункт с заголовком 1}{5}
 \contentsline {section}{Заключение}{6}
 \contentsline {section}{Список использованных источников}{7}
-\contentsline {section}{Приложение~Б}{8}
-\contentsline {section}{Приложение~В}{11}
+\contentsline {section}{Приложение~А}{8}
+\contentsline {section}{Приложение~Б}{11}
