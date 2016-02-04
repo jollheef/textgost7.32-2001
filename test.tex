@@ -24,6 +24,7 @@
 \usepackage{wrapfig}
 \usepackage{lscape}
 \usepackage{mathtools}
+\usepackage{environ}
 \usepackage{tabularx}
 \usepackage{titlesec}
 \usepackage[left=2.5cm, right=1.5cm, top=2.5cm, bottom=2.5cm]{geometry}
@@ -55,6 +56,7 @@
   format=plain,
   justification=centering,
   labelsep=dash,
+  font=normalsize,
   figurename=Рисунок}
 
 %Подпись для таблиц
@@ -62,9 +64,7 @@
   justification=raggedright,
   singlelinecheck=off}
 
-\DeclareCaptionLabelFormat{continued}{#1~#2 {Продолжение таблицы} )}
-\captionsetup[ContinuedFloat]{labelformat=continued,
-justification=raggedright}
+\DeclareCaptionLabelFormat{continued}{{Продолжение таблицы} #2}
 
 %Добавление изображения. Параметры:
 %1 -- путь к картинке; 2 -- подпись; 3 -- label.
@@ -75,8 +75,6 @@ justification=raggedright}
   \caption{#2}
   \label{#3}
 \end{figure} }
-
-\newcounter{No} % Лишний?
 
 \makeatletter % @ -> letter 
 \newcommand*{\Ralph}[1]{\@Ralph{\@nameuse{c@#1}}}
@@ -98,7 +96,16 @@ justification=raggedright}
 \thesection.\@arabic\c@paragraph%
 \fi}
 \@addtoreset{paragraph}{subsection} % подчинение счетчика
-\makeatother % letter -> @  
+
+\renewcommand{\theequation}{
+  \ifnum \c@app > 0
+  \@addtoreset{equation}{app}%
+  \theapp.\@arabic\c@equation
+  \else
+  \@arabic\c@equation
+  \fi
+}
+\makeatother % letter -> @
 
 \renewcommand{\theenumi}{\alph{enumi}}
 \renewcommand{\theenumii}{\arabic{enumii}}
@@ -170,9 +177,11 @@ justification=raggedright}
 
 \newcounter{app}
 \renewcommand{\theapp}{\Ralph{app}}
+\newcounter{eqcntr}
 
 %титульник приложений #1 -- Название приложения, #2 -- label%
 \newcommand*{\appsection}[2]{\refstepcounter{app}%
+\setcounter{eqcntr}{0}
 \clearpage\null\vfill%
 \specsec{Приложение~\theapp\\(обязательное)\\{#1}}%
 \addcontentsline{toc}{section}{Приложение~\theapp}\label{#2}%
@@ -193,7 +202,6 @@ justification=raggedright}
 \renewcommand{\l@paragraph}{\@dottedtocline{3}{0cm}{0em}}
 \makeatother % letter -> @  
 
-\numberwithin{equation}{section}
 %%Ссылка на формулу по госту
 \newcommand{\mathref}[1]{(\ref{#1})}
 
@@ -222,10 +230,32 @@ justification=raggedright}
   \end{enumerate}
 \end{enumerate}
 
+\begin{equation}
+  y = sin(x)
+\end{equation}
+
+\begin{equation}
+  y = sin(x)
+\end{equation}
+
+\begin{equation}
+  y = sin(x)
+\end{equation}
+
+\begin{equation}
+  y = sin(x)
+\end{equation}
 \subsection{Подраздел2}
 \paragraph{Пункт с заголовком1}
 Текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст
 
+\begin{equation}
+  y = sin(x)
+\end{equation}
+
+\begin{equation}
+  y = sin(x)
+\end{equation}
 \section{Раздел2}
 \paragraph{Пункт с заголовком 1} Текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст
 \paragraph{}Пункт без заголовка текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст 
@@ -240,6 +270,14 @@ justification=raggedright}
   \end{itemize}
 \end{itemize}
 
+\begin{equation}
+  y = sin(x)
+\end{equation}
+
+\begin{equation}
+  y = sin(x)
+\end{equation}
+
 % \include{sec1/sec1}
 % \include{sec2/sec2}
 % \include{sec3/sec3}
@@ -252,7 +290,70 @@ justification=raggedright}
 \appsection{Название приложения}{prove}
 Само приложение 1.
 \newpage
+\begin{equation}
+  y = sin(x)
+\end{equation}
+
+\begin{equation}
+  y = sin(x)
+\end{equation}
 \appsection{Название приложения2}{prove2}
 Само приложение 2. skdfh sjdlf hsldf jsdhf sljfh sdfjl sdljf sdlfjshdf ls dhfjsdhf jshf lsjd sjdhf lsdhjf sljdf shjf lsjhdf sljdf sjdf shdfls dfhsdjf 
+
+
+%Длинная таблица
+\setlength\LTleft{0pt}
+\setlength\LTright{0pt}
+\begin{longtable}{|@{\extracolsep{\fill}} r|*{2}{l|}}
+\caption{Feasible triples for 
+highly variable Grid, MLMMH} \label{grid_mlmmh}\\
+%\multicolumn{колво колонок}{|l|c|r|}{текст}
+%добавлять и удалять только multicolumn
+\hline \multicolumn{1}{|c|}{Time (s)} & % Колонки таблицы в 
+\multicolumn{1}{c|}{Triple chosen} & % первой части таблицы
+\multicolumn{1}{c|}{Other feasible triples} \\
+\hline 
+\endfirsthead
+\captionsetup{labelformat=continued} %%Продолжение
+\caption[]{}\\ %%таблицы (caption)
+\hline 
+\multicolumn{1}{|c|}{Time (s)} & %Заговолки в продолжении
+\multicolumn{1}{c|}{Triple chosen} & % Те же самые
+\multicolumn{1}{c|}{Other feasible triples} \\ 
+\hline 
+\endhead
+\hline
+\endfoot
+\hline
+\endlastfoot
+
+0 & (1, 11, 13725) & (1, 12, 10980), (1, 13, 8235), (2, 2, 0), (3, 1, 0) \\
+2745 & (1, 12, 10980) & (1, 13, 8235), (2, 2, 0), (2, 3, 0), (3, 1, 0) \\
+5490 & (1, 12, 13725) & (2, 2, 2745), (2, 3, 0), (3, 1, 0) \\
+8235 & (1, 12, 16470) & (1, 13, 13725), (2, 2, 2745), (2, 3, 0), (3, 1, 0) \\
+10980 & (1, 12, 16470) & (1, 13, 13725), (2, 2, 2745), (2, 3, 0), (3, 1, 0) \\
+13725 & (1, 12, 16470) & (1, 13, 13725), (2, 2, 2745), (2, 3, 0), (3, 1, 0) \\
+16470 & (1, 13, 16470) & (2, 2, 2745), (2, 3, 0), (3, 1, 0) \\
+19215 & (1, 12, 16470) & (1, 13, 13725), (2, 2, 2745), (2, 3, 0), (3, 1, 0) \\
+21960 & (1, 12, 16470) & (1, 13, 13725), (2, 2, 2745), (2, 3, 0), (3, 1, 0) \\
+24705 & (1, 12, 16470) & (1, 13, 13725), (2, 2, 2745), (2, 3, 0), (3, 1, 0) \\
+27450 & (1, 12, 16470) & (1, 13, 13725), (2, 2, 2745), (2, 3, 0), (3, 1, 0) \\
+30195 & (2, 2, 2745) & (2, 3, 0), (3, 1, 0) \\
+32940 & (1, 13, 16470) & (2, 2, 2745), (2, 3, 0), (3, 1, 0) \\
+35685 & (1, 13, 13725) & (2, 2, 2745), (2, 3, 0), (3, 1, 0) \\
+38430 & (1, 13, 10980) & (2, 2, 2745), (2, 3, 0), (3, 1, 0) \\
+\end{longtable}
+
+\begin{equation}
+  x = \sin(x)
+\end{equation}
+
+\begin{equation}
+  x = \sin(x)
+\end{equation}
+
+\begin{equation}
+  x = \sin(x)
+\end{equation}
 
 \end{document}
