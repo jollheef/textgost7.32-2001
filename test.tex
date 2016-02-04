@@ -26,7 +26,8 @@
 \usepackage{mathtools}
 \usepackage{tabularx}
 \usepackage{titlesec}
-\usepackage[left=2.5cm, right=1.5cm, top=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{etoolbox}
+\usepackage[left=3cm, right=1.5cm, top=2cm, bottom=2.5cm]{geometry}
 
 %\pretolerance10000 % запрет переносов
 \clubpenalty=10000  % откл. висячих
@@ -200,6 +201,30 @@
 \renewcommand{\l@paragraph}{\@dottedtocline{3}{0cm}{0em}}
 \makeatother % letter -> @  
 
+\newcounter{totfigures}
+\newcounter{tottables}
+\newcounter{totapps}
+
+%Подсчет количества рисунков, таблиц, приложений
+\providecommand\totfig{}
+\providecommand\tottab{}
+\providecommand\totapp{}
+
+\makeatletter
+\AtEndDocument{%
+  \addtocounter{totfigures}{\value{figure}}%
+  \addtocounter{tottables}{\value{table}}%
+  \addtocounter{totapps}{\value{app}}%
+  \immediate\write\@mainaux{%
+    \string\gdef\string\totfig{\number\value{totfigures}}%
+    \string\gdef\string\tottab{\number\value{tottables}}%
+    \string\gdef\string\totapp{\number\value{totapps}}%
+  }%
+}
+\makeatother
+\pretocmd{\chapter}{\addtocounter{totfigures}{\value{figure}}\setcounter{figure}{0}}{}{}
+\pretocmd{\chapter}{\addtocounter{tottables}{\value{table}}\setcounter{table}{0}}{}{}
+
 
 \begin{document}
 \input{title/title}
@@ -209,9 +234,7 @@
 \include{preface/preface}
 \newpage
 \section{Раздел1}
-\eqref{eq:1}, \mathref{eq:2}
-
-\mathref{eq:3}, \mathref{eq:4}
+\eqref{eq:1}
 \subsection{Подраздел1}
 \paragraph{Пункт с заголовком1}
 В приложении \ref{prove2} текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст
@@ -310,7 +333,7 @@
 highly variable Grid, MLMMH} \label{grid_mlmmh}\\
 %\multicolumn{колво колонок}{|l|c|r|}{текст}
 %добавлять и удалять только multicolumn
-\hline \multicolumn{1}{|c|}{Time (s)} & % Колонки таблицы в 
+\hline \multicolumn{1}{|p{1cm}|}{Time (s)} & % Колонки таблицы в 
 \multicolumn{1}{c|}{Triple chosen} & % первой части таблицы
 \multicolumn{1}{c|}{Other feasible triples} \\
 \hline 
@@ -318,7 +341,7 @@ highly variable Grid, MLMMH} \label{grid_mlmmh}\\
 \captionsetup{labelformat=continued} %%Продолжение
 \caption[]{}\\ %%таблицы (caption)
 \hline 
-\multicolumn{1}{|c|}{Time (s)} & %Заговолки в продолжении
+\multicolumn{1}{|p{1cm}|}{Time (s)} & %Заговолки в продолжении
 \multicolumn{1}{c|}{Triple chosen} & % Те же самые
 \multicolumn{1}{c|}{Other feasible triples} \\ 
 \hline 
