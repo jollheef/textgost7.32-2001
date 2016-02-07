@@ -33,7 +33,7 @@
 \clubpenalty=10000  % откл. висячих
 \widowpenalty=10000 %               строк
 \setlength\parindent{1.5cm}
-\pagestyle{empty}
+\pagestyle{plain}
 \usepackage{setspace}
 \setstretch{1.5} %полуторный интервал
 %\parindent=1.5cm % отступ красной строки
@@ -160,14 +160,14 @@
 
 %Для специальных заголовков
 \newcommand*{\specsec}[1]{%
-{\par\normalfont\large\filcenter#1% заголовок
+{\parindent=0cm\par\normalfont\large\filcenter#1% заголовок
 \par% закончить заголовок
 }}
 
 % Заголовки для введения, заключения, списка литературы и прочего, что должно входить
 % в содержание и не имеет нумерации
 \newcommand*{\specsection}[1]{\clearpage%
-\specsec{\MakeUppercase{#1}}%
+  \specsec{\MakeUppercase{#1}}%
 \addcontentsline{toc}{section}{#1}%
 }
 
@@ -189,7 +189,7 @@
 
 
 \addto\captionsrussian{%
-\renewcommand{\refname}{{\hfill СПИСОК ИСПОЛЬЗОВАННЫХ ИСТОЧНИКОВ\hfill}}%
+\renewcommand{\refname}{}%
 \renewcommand{\contentsname}{\large{СОДЕРЖАНИЕ}}%
 %\renewcommand{\tableofcontents}{\specsection{\contentsname}\@starttoc{toc}}%
 }
@@ -199,6 +199,8 @@
 \renewcommand{\l@section}{\@dottedtocline{1}{0cm}{0em}}
 \renewcommand{\l@subsection}{\@dottedtocline{2}{0cm}{0em}}
 \renewcommand{\l@paragraph}{\@dottedtocline{3}{0cm}{0em}}
+
+\renewcommand{\@biblabel}[1]{#1\hspace{1ex}}
 \makeatother % letter -> @  
 
 \newcounter{totfigures}
@@ -224,7 +226,6 @@
 \makeatother
 \pretocmd{\chapter}{\addtocounter{totfigures}{\value{figure}}\setcounter{figure}{0}}{}{}
 \pretocmd{\chapter}{\addtocounter{tottables}{\value{table}}\setcounter{table}{0}}{}{}
-
 
 \begin{document}
 \input{title/title}
@@ -280,7 +281,7 @@
 \end{equation}
 \section{Раздел2}
 \paragraph{Пункт с заголовком 1} Текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст
-\paragraph{}Пункт без заголовка текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст 
+\paragraph{}Пункт без заголовка текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст  \cite{ltks}.
 \begin{itemize}
 \item one;
 \item two;
