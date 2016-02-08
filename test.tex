@@ -189,7 +189,7 @@
 
 
 \addto\captionsrussian{%
-\renewcommand{\refname}{}%
+\renewcommand{\refname}{Список использованных источников}%
 \renewcommand{\contentsname}{\large{СОДЕРЖАНИЕ}}%
 %\renewcommand{\tableofcontents}{\specsection{\contentsname}\@starttoc{toc}}%
 }
@@ -200,7 +200,28 @@
 \renewcommand{\l@subsection}{\@dottedtocline{2}{0cm}{0em}}
 \renewcommand{\l@paragraph}{\@dottedtocline{3}{0cm}{0em}}
 
-\renewcommand{\@biblabel}[1]{#1\hspace{1ex}}
+\renewcommand{\@biblabel}[1]{\hspace{1.5cm}#1\hspace{1ex}}
+
+\renewenvironment{thebibliography}
+     {\specsection{\refname}%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\setlength{\leftmargin}{0cm}
+            \setlength{\labelsep}{0ex}
+            \setlength{\labelwidth}{0cm}
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}
+            \setlength{\topsep}{0pt}
+            \setlength{\partopsep}{0pt}
+            \setlength{\parskip}{0pt}
+            \setlength{\itemsep}{0pt}
+            \setlength{\parsep}{0pt}}%
+      \sloppy\clubpenalty4000\widowpenalty4000%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist}
 \makeatother % letter -> @  
 
 \newcounter{totfigures}
@@ -242,6 +263,8 @@
 \paragraph{Пункт с заголовком2}
 \subparagraph Подпункт текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст
 \subparagraph Подпункт  текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст
+
+sdojfh aslsakjf sadlkf sadfl sdfjh fsdalk
 \begin{enumerate}
 \item one;
 \item two;
@@ -281,7 +304,7 @@
 \end{equation}
 \section{Раздел2}
 \paragraph{Пункт с заголовком 1} Текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст
-\paragraph{}Пункт без заголовка текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст  \cite{ltks}.
+\paragraph{}Пункт без заголовка текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст, текст  \cite{ltks, asd}.
 \begin{itemize}
 \item one;
 \item two;
