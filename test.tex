@@ -203,16 +203,17 @@
 
 \renewcommand{\@biblabel}[1]{\hspace{1.5cm}#1\hspace{1ex}}
 
+\newcounter{biblio}
 \renewenvironment{thebibliography}
      {\specsection{\refname}%
-      \list{\@biblabel{\@arabic\c@enumiv}}%
+      \list{\@biblabel{\@arabic\c@biblio}}%
            {\setlength{\leftmargin}{0cm}
             \setlength{\labelsep}{0ex}
             \setlength{\labelwidth}{0cm}
             \@openbib@code
-            \usecounter{enumiv}%
+            \usecounter{biblio}%
             \let\p@enumiv\@empty
-            \renewcommand\theenumiv{\@arabic\c@enumiv}
+            \renewcommand\thebiblio{\@arabic\c@biblio}
             \setlength{\topsep}{0pt}
             \setlength{\partopsep}{0pt}
             \setlength{\parskip}{0pt}
@@ -228,29 +229,63 @@
 \newcounter{totfigures}
 \newcounter{tottables}
 \newcounter{totapps}
+\newcounter{totbiblio}
 
 %Подсчет количества рисунков, таблиц, приложений
 \providecommand\totfig{}
 \providecommand\tottab{}
 \providecommand\totapp{}
+\providecommand\totbib{}
 
 \makeatletter
 \AtEndDocument{%
   \addtocounter{totfigures}{\value{figure}}%
   \addtocounter{tottables}{\value{table}}%
   \addtocounter{totapps}{\value{app}}%
+  \addtocounter{totbiblio}{\value{biblio}}%
   \immediate\write\@mainaux{%
     \string\gdef\string\totfig{\number\value{totfigures}}%
     \string\gdef\string\tottab{\number\value{tottables}}%
     \string\gdef\string\totapp{\number\value{totapps}}%
+    \string\gdef\string\totbib{\number\value{totbiblio}}%
   }%
 }
 \makeatother
 \pretocmd{\chapter}{\addtocounter{totfigures}{\value{figure}}\setcounter{figure}{0}}{}{}
 \pretocmd{\chapter}{\addtocounter{tottables}{\value{table}}\setcounter{table}{0}}{}{}
+\pretocmd{\chapter}{\addtocounter{totbiblio}{\value{biblio}}\setcounter{biblio}{0}}{}{}
+
+
+
+\newcommand{\info} {%
+Пояснительная записка содержит \pageref{LastPage}~с.%
+\ifnum \totfig >0
+    , \totfig~рис.%
+\fi
+%
+\ifnum \tottab >0
+    , \tottab~табл.%
+\fi
+%
+\ifnum \totbib =1
+    , \totbib~источник%
+\else
+    \ifnum \totbib >1
+        \ifnum \totbib <5
+            , \totbib~источника%
+        \else
+            , \totbib~источников%
+        \fi
+    \fi
+\fi
+%
+\ifnum \totapp >0
+    , \totapp~прил.%
+\fi
+}
 
 \renewcommand{\lstlistingname}{Листинг}%
-\linespread{1}
+%\linespread{1} % http://s.arboreus.com/2008/03/latex.html
 \lstset{%
   captionpos=b,
   basicstyle=\footnotesize
