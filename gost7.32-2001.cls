@@ -6,8 +6,8 @@
 \newfontfamily{\cyrillicfont}{Liberation Serif}
 %\setmainfont{Times New Roman}  %% задаёт основной шрифт документа
 \setmainfont{Liberation Serif}  %% задаёт основной шрифт документа
-\setsansfont{DejaVu Sans}  %% задаёт шрифт без засечек
-\setmonofont{DejaVu Sans Mono}  %% задаёт моноширинный шрифт
+\setsansfont{Liberation Sans}  %% задаёт шрифт без засечек
+\setmonofont{Liberation Mono}  %% задаёт моноширинный шрифт
 \defaultfontfeatures{Scale=MatchLowercase, Mapping=tex-text}  %% устанавливает поведение шрифтов по умолчанию
 \setdefaultlanguage{russian}  %% устанавливает язык по умолчанию
 \setotherlanguage{english}
@@ -172,7 +172,7 @@
 
 %Для специальных заголовков
 \newcommand*{\specsec}[1]{%
-{\parindent=0cm\par\normalfont\large\filcenter#1% заголовок
+{\parindent=0cm\par\normalfont\normalsize\filcenter#1% заголовок
 \par% закончить заголовок
 }}
 
@@ -202,7 +202,7 @@
 
 \addto\captionsrussian{%
 \renewcommand{\refname}{Список использованных источников}%
-\renewcommand{\contentsname}{\large{СОДЕРЖАНИЕ}}%
+\renewcommand{\contentsname}{\normalsize{СОДЕРЖАНИЕ}}%
 %\renewcommand{\tableofcontents}{\specsection{\contentsname}\@starttoc{toc}}%
 }
 
