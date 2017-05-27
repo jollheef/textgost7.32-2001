@@ -123,9 +123,9 @@
 
 %перечисления
 \setlist{nolistsep}
-\setitemize[1]{label=-, fullwidth, itemindent=\parindent, 
+\setitemize[1]{label=\dash, fullwidth, itemindent=\parindent,
   listparindent=\parindent}% для дефисного списка
-\setitemize[2]{label=-, fullwidth, itemindent=\parindent, leftmargin=1.5cm,
+\setitemize[2]{label=\dash, fullwidth, itemindent=\parindent, leftmargin=1.5cm,
   listparindent=\parindent}
 
 \setenumerate[1]{label=\theenumi), fullwidth, itemindent=\parindent, 
