@@ -424,7 +424,7 @@
   \afterpage{%
     \begin{figure}[H]
       \centering
-      \includegraphics{#1}
+      \includegraphics[height=0.4\textheight]{#1}
       \caption{#2}
       \label{#3}
     \end{figure}
