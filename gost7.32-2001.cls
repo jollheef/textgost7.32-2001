@@ -13,6 +13,7 @@
 \setotherlanguage{english}
 
 \tolerance=1000
+\pretolerance10000
 \RequirePackage{hyphenat}
 \RequirePackage{indentfirst}
 \RequirePackage{enumerate}
