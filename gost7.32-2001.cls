@@ -434,12 +434,24 @@
   }
 }
 
-%% Usage: \gostpic{pic.png}{Name of picture}{fig:rings}
+%% Usage: \gostpicorig{pic.png}{Name of picture}{fig:rings}
 \newcommand*\gostpicorig[3]{%
   \afterpage{%
     \begin{figure}[H]
       \centering
       \includegraphics{#1}
+      \caption{#2}
+      \label{#3}
+    \end{figure}
+  }
+}
+
+%% Usage: \gostpicwidth{pic.png}{Name of picture}{fig:rings}
+\newcommand*\gostpicwidth[3]{%
+  \afterpage{%
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=\linewidth]{#1}
       \caption{#2}
       \label{#3}
     \end{figure}
