@@ -293,3 +293,29 @@
   captionpos=b,
   basicstyle=\footnotesize
 }
+
+%%
+%%
+%% TITLE PAGE / ТИТУЛЬНЫЙ ЛИСТ
+%%
+%%
+
+\newcommand*\subject[1]{\gdef\Gsubject{#1}}
+\newcommand*\student[1]{\gdef\Gstudent{#1}}
+\newcommand*\captain[1]{\gdef\Gcaptain{#1}}
+\newcommand*\inspector[1]{\gdef\Ginspector{#1}}
+\newcommand*\reviewer[1]{\gdef\Greviewer{#1}}
+\newcommand*\secretary[1]{\gdef\Gsecretary{#1}}
+\newcommand*\departmenthead[1]{\gdef\Gdepartmenthead{#1}}
+
+\renewcommand*{\maketitle}{%
+  \begin{titlepage}
+    Тема: \Gsubject \\
+    Студент: \Gstudent \\
+    Руководитель: \Gcaptain \\
+    Нормоконтролёр \Ginspector \\
+    Рецензент \Greviewer \\
+    Заведующий кафедрой \Gdepartmenthead \\
+    Секретарь ГЭК \Gsecretary \\
+  \end{titlepage}
+}
