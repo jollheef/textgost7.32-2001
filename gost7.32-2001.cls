@@ -434,6 +434,18 @@
   }
 }
 
+%% Usage: \gostpic{pic.png}{Name of picture}{fig:rings}
+\newcommand*\gostpicorig[3]{%
+  \afterpage{%
+    \begin{figure}[H]
+      \centering
+      \includegraphics{#1}
+      \caption{#2}
+      \label{#3}
+    \end{figure}
+  }
+}
+
 %%
 %%
 %% Магия библиографии по госту
