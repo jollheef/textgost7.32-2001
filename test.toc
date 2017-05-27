@@ -1,14 +1,14 @@
 \select@language {russian}
-\contentsline {section}{Введение}{4}
-\contentsline {section}{1\hspace {1ex}Раздел1}{5}
-\contentsline {subsection}{1.1\hspace {1ex}Подраздел1}{5}
-\contentsline {paragraph}{1.1.1\hspace {1ex}Пункт с заголовком1}{5}
-\contentsline {paragraph}{1.1.2\hspace {1ex}Пункт с заголовком2}{5}
-\contentsline {subsection}{1.2\hspace {1ex}Подраздел2}{5}
-\contentsline {paragraph}{1.2.1\hspace {1ex}Пункт с заголовком1}{5}
-\contentsline {section}{2\hspace {1ex}Раздел2}{6}
-\contentsline {paragraph}{2.1\hspace {1ex}Пункт с заголовком 1}{6}
-\contentsline {section}{Заключение}{7}
-\contentsline {section}{Список использованных источников}{8}
-\contentsline {section}{Приложение~А}{9}
-\contentsline {section}{Приложение~Б}{12}
+\contentsline {section}{Введение}{3}
+\contentsline {section}{1\hspace {1ex}Раздел1}{4}
+\contentsline {subsection}{1.1\hspace {1ex}Подраздел1}{4}
+\contentsline {paragraph}{1.1.1\hspace {1ex}Пункт с заголовком1}{4}
+\contentsline {paragraph}{1.1.2\hspace {1ex}Пункт с заголовком2}{4}
+\contentsline {subsection}{1.2\hspace {1ex}Подраздел2}{4}
+\contentsline {paragraph}{1.2.1\hspace {1ex}Пункт с заголовком1}{4}
+\contentsline {section}{2\hspace {1ex}Раздел2}{5}
+\contentsline {paragraph}{2.1\hspace {1ex}Пункт с заголовком 1}{5}
+\contentsline {section}{Заключение}{6}
+\contentsline {section}{Список использованных источников}{7}
+\contentsline {section}{Приложение~А}{8}
+\contentsline {section}{Приложение~Б}{11}
