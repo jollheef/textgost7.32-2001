@@ -138,14 +138,14 @@
 
 \renewcommand*{\section}[1]{%
 \refstepcounter{section}%
-{\par\normalfont\large\thesection\hspace{1ex}#1\par\nopagebreak%
+{\par\normalfont\normalsize\thesection\hspace{1ex}#1\par\nopagebreak%
 \addcontentsline{toc}{section}{\thesection\hspace{1ex}#1}%
 \setcounter{paragraph}{0}%
 }}
 
 \renewcommand*{\subsection}[1]{%
 \refstepcounter{subsection}%
-{\par\normalfont\large\thesubsection\hspace{1ex}#1\par\nopagebreak%
+{\par\normalfont\normalsize\thesubsection\hspace{1ex}#1\par\nopagebreak%
 \addcontentsline{toc}{subsection}{\thesubsection\hspace{1ex}#1}%
 }}
 
