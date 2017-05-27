@@ -37,6 +37,7 @@
 \RequirePackage{ragged2e}
 \RequirePackage{eqparbox}
 \RequirePackage{ulem}
+\RequirePackage{afterpage}
 
 %\pretolerance10000 % запрет переносов
 \clubpenalty=10000  % откл. висячих
