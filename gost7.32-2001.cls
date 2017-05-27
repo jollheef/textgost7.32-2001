@@ -14,6 +14,7 @@
 
 \tolerance=1000
 \sloppy
+\RequirePackage[superscript,biblabel]{cite}
 \RequirePackage{hyphenat}
 \RequirePackage{indentfirst}
 \RequirePackage{enumerate}
@@ -431,4 +432,43 @@
       \label{#3}
     \end{figure}
   }
+}
+
+%%
+%%
+%% Магия библиографии по госту
+%%
+%%
+%% Как использовать:
+%% В конце текста, как обычно
+%% \begin{thebibliography}
+%%   \gostbibitem{name}{value}
+%%   \gostbibitem{anothername}{anothervalue}
+%% \end{thebibliography}
+
+%% В тексте
+%% \gostcite{name}
+%% \gostcite{anothername}
+
+\newcounter{gostbiblaterdef} % just a dummy counter
+\newcommand{\gostbiblaterdef}[2]{%
+  \renewcommand\thegostbiblaterdef{#2}%
+  \refstepcounter{gostbiblaterdef}\label{#1}%
+}
+
+\newcommand*\gostbibitem[2]{%
+  \gostbiblaterdef{#1}{#2}
+\bibitem{#1}
+  \ref{#1}
+}
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+\newcommand*\gostcite[1]{%
+  \cite{#1}\blfootnote{\cite{#1}\ref{#1}}%
 }
