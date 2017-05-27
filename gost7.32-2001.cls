@@ -32,6 +32,10 @@
 \RequirePackage{etoolbox}
 \RequirePackage[left=3cm, right=1.5cm, top=2cm, bottom=2.5cm]{geometry}
 \RequirePackage{listings}
+\RequirePackage{multicol}
+\RequirePackage{ragged2e}
+\RequirePackage{eqparbox}
+\RequirePackage{ulem}
 
 %\pretolerance10000 % запрет переносов
 \clubpenalty=10000  % откл. висячих
@@ -305,17 +309,104 @@
 \newcommand*\captain[1]{\gdef\Gcaptain{#1}}
 \newcommand*\inspector[1]{\gdef\Ginspector{#1}}
 \newcommand*\reviewer[1]{\gdef\Greviewer{#1}}
+\newcommand*\reviewerinfo[1]{\gdef\Greviewerinfo{#1}}
 \newcommand*\secretary[1]{\gdef\Gsecretary{#1}}
 \newcommand*\departmenthead[1]{\gdef\Gdepartmenthead{#1}}
 
+\newcommand{\wideunderline}[2][2em]{%
+  \underline{\makebox[\ifdim\width>#1\width\else#1\fi][r]{#2}}%
+}
+
+\newcommand{\wideunderlineForHW}[2][2em]{%
+  \mbox{%
+    \underline{\qquad\qquad\quad}%
+    \hspace{1em}%
+    \underline{\makebox[\ifdim\width>#1\width\else#1\fi][r]{#2}}%
+  }%
+}
+
 \renewcommand*{\maketitle}{%
   \begin{titlepage}
-    Тема: \Gsubject \\
-    Студент: \Gstudent \\
-    Руководитель: \Gcaptain \\
-    Нормоконтролёр \Ginspector \\
-    Рецензент \Greviewer \\
-    Заведующий кафедрой \Gdepartmenthead \\
-    Секретарь ГЭК \Gsecretary \\
+    \pretolerance10000
+    \begin{centering}
+      МИНИСТЕРСТВО ОБРАЗОВАНИЯ И НАУКИ РФ\\
+      \begin{singlespace}\normalsize
+        Федеральное государственное бюджетное образовательное учреждение
+        высшего образования
+      \end{singlespace}
+      «ПЕНЗЕНСКИЙ ГОСУДАРСТВЕННЫЙ УНИВЕРСИТЕТ»\\
+      %
+      %
+      %
+      \begin{multicols}{2}
+      \begin{singlespace}\normalsize
+        Политехнический институт\\
+        {\centering Факультет приборостроения, информационных
+          технологий и электроники}\\
+      \end{singlespace}
+      \begin{singlespace}\normalsize
+        Кафедра \\
+        «Информационная безопасность систем и технологий»
+      \end{singlespace}
+      \end{multicols}
+      \vspace{-1em}
+      \begin{multicols}{2}
+        Специальность 100503 –
+
+        \columnbreak
+      \begin{singlespace}\normalsize\justifying\setlength{\parindent}{0cm} 
+        Информационная безопасность автоматизированных систем
+      \end{singlespace}
+      \end{multicols}
+      \vspace{-2em}
+      \begin{multicols}{2}
+        Специализация –
+        \columnbreak
+      \begin{singlespace}\normalsize\justifying\setlength{\parindent}{0cm} 
+      Защищенные автоматизированные системы управления
+      \end{singlespace}
+      \end{multicols}
+      %
+      %
+      %
+      \vspace{0.5em}
+      ДИПЛОМНЫЙ ПРОЕКТ\\
+      на тему\\
+      \vspace{-0.5em}
+      \begin{center}
+        \MakeUppercase{\Gsubject}
+      \end{center}
+    \end{centering}
+    \begin{flushleft}
+      Студент \hfill \wideunderlineForHW[8em]{\Gstudent}
+      \\
+      %
+      Руководитель \hfill \wideunderlineForHW[8em]{\Gcaptain}
+      \\
+      %
+      Нормконтроллер \hfill \wideunderlineForHW[8em]{\Ginspector}
+      \\
+      %
+      %% Рецензент \underline{\Greviewerinfo} \hfill \underline{\hspace{3cm}}
+      %% \wideunderline[8em]{\Greviewer}
+      Рецензент \underline{\Greviewerinfo} \hfill \wideunderlineForHW[8em]{\Greviewer}
+      \\
+      %
+      \vspace{2em}
+      Работа допущена к защите (протокол заседания кафедры от
+      \underline{\hspace{1.7cm}} № \underline{\hspace{1.2cm}})
+      \vspace{1em}
+      %
+      Заведующий кафедрой \hfill \wideunderlineForHW[8em]{\Gdepartmenthead}
+      \\
+      %
+      Работа защищена с отметкой \underline{\hspace{5cm}}(протокол заседания ГЭК
+      от \underline{\hspace{3cm}} № \underline{\hspace{3cm}})\\
+      %
+      Секретарь ГЭК \hfill \wideunderlineForHW[8em]{\Gsecretary}
+      %
+    \end{flushleft}
+    \vfill
+    \centerline{Пенза 2017}
   \end{titlepage}
 }
