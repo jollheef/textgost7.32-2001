@@ -1,6 +1,8 @@
-\ProvidesPackage{gost7.32-2001}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{gost7.32-2001}[2017/05/27]
+\LoadClass[12pt, final, a4paper, oneside]{extarticle}
 
-\usepackage{polyglossia}  %% подключает пакет многоязыкой вёрстки
+\RequirePackage{polyglossia}  %% подключает пакет многоязыкой вёрстки
 \newfontfamily{\cyrillicfont}{Liberation Serif}
 %\setmainfont{Times New Roman}  %% задаёт основной шрифт документа
 \setmainfont{Liberation Serif}  %% задаёт основной шрифт документа
@@ -11,32 +13,32 @@
 \setotherlanguage{english}
 
 \tolerance=1000
-\usepackage{hyphenat}
-\usepackage{indentfirst}
-\usepackage{enumerate}
-\usepackage{enumitem}
-\usepackage{lastpage}
-\usepackage{tocloft}
-\usepackage{graphicx}
-\usepackage{float}
-\usepackage{caption}    %TODO: Проверить пакеты на используемость
-\usepackage{multirow}
-\usepackage{longtable}
-\usepackage{wrapfig}
-\usepackage{lscape}
-\usepackage{mathtools}
-\usepackage{tabularx}
-\usepackage{titlesec}
-\usepackage{etoolbox}
-\usepackage[left=3cm, right=1.5cm, top=2cm, bottom=2.5cm]{geometry}
-\usepackage{listings}
+\RequirePackage{hyphenat}
+\RequirePackage{indentfirst}
+\RequirePackage{enumerate}
+\RequirePackage{enumitem}
+\RequirePackage{lastpage}
+\RequirePackage{tocloft}
+\RequirePackage{graphicx}
+\RequirePackage{float}
+\RequirePackage{caption}    %TODO: Проверить пакеты на используемость
+\RequirePackage{multirow}
+\RequirePackage{longtable}
+\RequirePackage{wrapfig}
+\RequirePackage{lscape}
+\RequirePackage{mathtools}
+\RequirePackage{tabularx}
+\RequirePackage{titlesec}
+\RequirePackage{etoolbox}
+\RequirePackage[left=3cm, right=1.5cm, top=2cm, bottom=2.5cm]{geometry}
+\RequirePackage{listings}
 
 %\pretolerance10000 % запрет переносов
 \clubpenalty=10000  % откл. висячих
 \widowpenalty=10000 %               строк
 \setlength\parindent{1.5cm}
 \pagestyle{plain}
-\usepackage{setspace}
+\RequirePackage{setspace}
 \setstretch{1.5} %полуторный интервал
 %\parindent=1.5cm % отступ красной строки
 \righthyphenmin=2 %кол-во букв, которые можно переносить
