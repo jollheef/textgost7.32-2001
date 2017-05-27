@@ -412,3 +412,21 @@
     \centerline{Пенза 2017}
   \end{titlepage}
 }
+
+%%
+%%
+%% Макросы для рисунков
+%%
+%%
+
+%% Usage: \gostpic{pic.png}{Name of picture}{fig:rings}
+\newcommand*\gostpic[3]{%
+  \afterpage{%
+    \begin{figure}[H]
+      \centering
+      \includegraphics{#1}
+      \caption{#2}
+      \label{#3}
+    \end{figure}
+  }
+}
