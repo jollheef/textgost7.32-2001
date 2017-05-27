@@ -48,6 +48,8 @@
 \righthyphenmin=2 %кол-во букв, которые можно переносить
 %\fussy
 
+\newcommand{\dash}{ – }
+
 % 115%
 \renewcommand{\tiny}{\fontsize{7}{8.05pt}\selectfont}
 \renewcommand{\scriptsize}{\fontsize{9}{10.35pt}\selectfont}
