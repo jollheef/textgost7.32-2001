@@ -32,7 +32,7 @@
 \RequirePackage{tabularx}
 \RequirePackage{titlesec}
 \RequirePackage{etoolbox}
-\RequirePackage[left=3cm, right=1.5cm, top=2cm, bottom=2.5cm]{geometry}
+\RequirePackage[left=3cm, right=1cm, top=2cm, bottom=2cm]{geometry}
 \RequirePackage{listings}
 \RequirePackage{multicol}
 \RequirePackage{ragged2e}
@@ -210,8 +210,8 @@
 \makeatletter % @ -> letter 
 % Содержание
 \renewcommand{\l@section}{\@dottedtocline{1}{0cm}{0em}}
-\renewcommand{\l@subsection}{\@dottedtocline{2}{0cm}{0em}}
-\renewcommand{\l@paragraph}{\@dottedtocline{3}{0cm}{0em}}
+\renewcommand{\l@subsection}{\@dottedtocline{2}{1.25cm}{-2.5em}}
+\renewcommand{\l@paragraph}{\@dottedtocline{3}{2.5cm}{-5em}}
 
 \renewcommand{\@biblabel}[1]{\hspace{1.5cm}#1\hspace{1ex}}
 
