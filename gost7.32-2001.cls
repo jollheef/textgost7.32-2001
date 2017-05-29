@@ -315,8 +315,11 @@
 \newcommand*\inspector[1]{\gdef\Ginspector{#1}}
 \newcommand*\reviewer[1]{\gdef\Greviewer{#1}}
 \newcommand*\reviewerinfo[1]{\gdef\Greviewerinfo{#1}}
+\newcommand*\reviewernewline[1]{\gdef\Greviewernewline{#1}}
 \newcommand*\secretary[1]{\gdef\Gsecretary{#1}}
 \newcommand*\departmenthead[1]{\gdef\Gdepartmenthead{#1}}
+
+\reviewernewline{}
 
 \newcommand{\wideunderline}[2][2em]{%
   \underline{\makebox[\ifdim\width>#1\width\else#1\fi][r]{#2}}%
@@ -394,7 +397,7 @@
       %
       %% Рецензент \underline{\Greviewerinfo} \hfill \underline{\hspace{3cm}}
       %% \wideunderline[8em]{\Greviewer}
-      Рецензент \underline{\Greviewerinfo} \hfill \wideunderlineForHW[8em]{\Greviewer}
+      Рецензент \underline{\Greviewerinfo} \Greviewernewline \hfill \wideunderlineForHW[8em]{\Greviewer}
       \\
       %
       \vspace{2em}
