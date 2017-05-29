@@ -368,7 +368,7 @@
         Специализация –
         \columnbreak
       \begin{singlespace}\normalsize\justifying\setlength{\parindent}{0cm} 
-      Защищенные автоматизированные системы управления
+      Защищенные автоматизированные \\ системы управления
       \end{singlespace}
       \end{multicols}
       %
