@@ -196,7 +196,7 @@
 \setcounter{equation}{0}
 \clearpage\null\vfill%
 \specsec{Приложение~\theapp\\(обязательное)\\{#1}}%
-\addcontentsline{toc}{section}{Приложение~\theapp}\label{#2}%
+\addcontentsline{toc}{section}{Приложение~\theapp~#1}\label{#2}%
 \vfill\vfill\newpage}
 
 
