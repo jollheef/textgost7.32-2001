@@ -461,16 +461,6 @@
   }
 }
 
-\newenvironment*{figaslst}[2]{
-  \begin{figure}[H]
-    \caption{#1}
-    \label{#2}
-\begin{lstlisting}[captionpos=b]
-}{
-\end{lstlisting}
-  \end{figure}
-  }
-
 %%
 %%
 %% Магия библиографии по госту
