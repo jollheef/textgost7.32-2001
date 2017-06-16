@@ -296,7 +296,7 @@
 \fi
 }
 
-\renewcommand{\lstlistingname}{Листинг}%
+\renewcommand{\lstlistingname}{Рисунок}%
 %\linespread{1} % http://s.arboreus.com/2008/03/latex.html
 \lstset{%
   captionpos=b,
@@ -499,3 +499,11 @@
 \newcommand*\gostcite[1]{%
   \cite{#1}%
 }
+
+\makeatletter
+\AtBeginDocument{%
+  \let\c@figure\c@lstlisting
+  \let\thefigure\thelstlisting
+  \let\ftype@lstlisting\ftype@figure % give the floats the same precedence
+}
+\makeatother
