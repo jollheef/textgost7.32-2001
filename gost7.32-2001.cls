@@ -14,7 +14,7 @@
 
 \tolerance=1000
 \sloppy
-\RequirePackage[superscript,biblabel]{cite}
+\RequirePackage[biblabel]{cite}
 \RequirePackage{hyphenat}
 \RequirePackage{indentfirst}
 \RequirePackage{enumerate}
@@ -497,5 +497,5 @@
 }
 
 \newcommand*\gostcite[1]{%
-  \cite{#1}\blfootnote{\cite{#1}\ref{#1}}%
+  \cite{#1}%
 }
